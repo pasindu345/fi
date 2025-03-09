@@ -128,11 +128,11 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
                 [
                     
-                  [ InlineKeyboardButton( "ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ", callback_data = "" ),
-                    InlineKeyboardButton("sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ", callback_data = "")],
+                  [ InlineKeyboardButton( "𝖬𝖺𝗂𝗇 𝖢𝗁𝖺𝗇𝗇𝖾𝗅", url = "https://t.me/sinhlacartoon" ),
+                    InlineKeyboardButton("𝖡𝖺𝖼𝗄𝗎𝗉 ", url = "https://t.me/+MUoTkaW0UYUyOWI1")],
                 [
-                    InlineKeyboardButton("ᴍᴀɪɴ", callback_data = ""),
-                    InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data = "")
+                    InlineKeyboardButton("𝖲𝗂𝗇𝗁𝖺𝗅𝖺 𝖢𝖺𝗋𝗍𝗈𝗈𝗇", url = "https://t.me/+djFt-Qy8XWc3MjU1"),
+                    InlineKeyboardButton("𝖠𝗇𝗂𝗆𝖾 𝖢𝗁𝖺𝗇𝗇𝖾𝗅", url = "https://t.me/Anime_Alliance2")
                 ]
             ]
         )
