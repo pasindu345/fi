@@ -1,4 +1,6 @@
-# (©) PythonBotz 
+#(©) PythonBotz 
+
+ 
 
 import sys
 import os
@@ -17,14 +19,16 @@ from config import *
 from helper_func import *
 from database.database import *
 
+
 # File auto-delete time in seconds (Set your desired time in seconds here)
 FILE_AUTO_DELETE = TIME  # Example: 3600 seconds (1 hour)
+
 
 @Bot.on_message(filters.command('start') & filters.private & subscribed1 & subscribed2 & subscribed3 & subscribed4)
 async def start_command(client: Client, message: Message):
     await message.reply_chat_action(ChatAction.CHOOSE_STICKER)
     id = message.from_user.id
-
+ 
     if not await present_user(id):
         try:
             await add_user(id)
@@ -115,24 +119,41 @@ async def start_command(client: Client, message: Message):
                 ) if reload_url else None
 
                 await notification_msg.edit(
-                    "<b>ʏᴏᴜʀ ᴠɪᴅᴇᴏ/ꜰɪʟᴇ ɪꜱ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ !!\n\nᴄʟɪᴄᴋ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ғɪʟᴇ ᴀɢᴀɪɴ.</b>",
+                    "<b>ʏᴏᴜʀ ᴠɪᴅᴇᴏ/ꜰɪʟᴇ ɪꜱ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ !!\n\nᴄʟɪᴄᴋ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ᴅᴇʟᴇᴛᴇᴅ ᴠɪᴅᴇᴏ/ꜰɪʟᴇ 👇</b>",
                     reply_markup=keyboard
                 )
             except Exception as e:
                 print(f"Error updating notification with 'Get File Again' button: {e}")
     else:
+        reply_markup = InlineKeyboardMarkup(
+                [
+                    
+                  [ InlineKeyboardButton( "ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ", callback_data = "main" ),
+                    InlineKeyboardButton("sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ", callback_data = "source")],
+                [
+                    InlineKeyboardButton("ᴍᴀɪɴ", callback_data = "about"),
+                    InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data = "about")
+                ]
+            ]
+        )
         await message.reply_photo(
-            photo=random.choice(PICS),
+            photo = random.choice(PICS),
             caption=START_MSG.format(
-                first=message.from_user.first_name,
-                last=message.from_user.last_name,
-                username=None if not message.from_user.username else '@' + message.from_user.username,
-                mention=message.from_user.mention,
-                id=message.from_user.id
-            )
+                first = message.from_user.first_name,
+                last = message.from_user.last_name,
+                username = None if not message.from_user.username else '@' + message.from_user.username,
+                mention = message.from_user.mention,
+                id = message.from_user.id
+            ),
+            reply_markup = reply_markup
+           
+            # fixed 😁 
+            
+            
         )
         return
 
+    
 #=====================================================================================##
 
 WAIT_MSG = """"<b>Processing ...</b>"""
@@ -141,6 +162,8 @@ REPLY_ERROR = """<code>Use this command as a replay to any telegram message with
 
 #=====================================================================================##
 
+    
+    
 # Don't Remove Credit @rohit_1888 
 # Ask Doubt on telegram @offchats
 
@@ -195,7 +218,7 @@ async def not_joined(client: Client, message: Message):
         pass  # Ignore if no second argument is present
 
     await message.reply_photo(
-        photo=random.choice(PICS),
+        photo = random.choice(PICS),
         caption=FORCE_MSG.format(
         first=message.from_user.first_name,
         last=message.from_user.last_name,
@@ -203,8 +226,10 @@ async def not_joined(client: Client, message: Message):
         mention=message.from_user.mention,
         id=message.from_user.id
     ),
-    reply_markup=InlineKeyboardMarkup(buttons)
+    reply_markup=InlineKeyboardMarkup(buttons)#,
+    #message_effect_id=5104841245755180586  # Add the effect ID here
     )
+    
 
 @Bot.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
 async def get_users(client: Bot, message: Message):
@@ -244,7 +269,7 @@ async def send_text(client: Bot, message: Message):
             total += 1
         
         status = f"""<b><u>Broadcast Completed</u>
-        
+
 Total Users: <code>{total}</code>
 Successful: <code>{successful}</code>
 Blocked Users: <code>{blocked}</code>
@@ -305,6 +330,8 @@ async def forward_message(client: Client, message: Message):
 
     await pls_wait.edit(status)
 
+
+
 #=====================================================================================##
 #......... RESTART COMMAND FOR RESTARTING BOT .......#
 #=====================================================================================##
@@ -320,4 +347,7 @@ async def restart_bot(client: Client, message: Message):
         os.execl(sys.executable, *args)
     except Exception as e:
         print(f"Error occured while Restarting the bot: {e}")
-        return await msg.edit_text(f"<b><i>! Eʀʀᴏʀ, Cᴏɴᴛᴀᴄᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ ᴛᴏ sᴏʟᴠᴇ ᴛʜᴇ ɪssᴜᴇs @metaUi</i></b>
+        return await msg.edit_text(f"<b><i>! Eʀʀᴏʀ, Cᴏɴᴛᴀᴄᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ ᴛᴏ sᴏʟᴠᴇ ᴛʜᴇ ɪssᴜᴇs @metaUi</i></b>\n<blockquote expandable><b>Rᴇᴀsᴏɴ:</b> {e}</blockquote>")
+    # Optionally, you can add cleanup tasks here
+    #subprocess.Popen([sys.executable, "main.py"])  # Adjust this if your start file is named differently
+    #sys.exit()
