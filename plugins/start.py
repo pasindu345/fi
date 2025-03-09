@@ -128,11 +128,11 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
                 [
                     
-                  [ InlineKeyboardButton( "ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ", callback_data = "main" ),
-                    InlineKeyboardButton("sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ", callback_data = "source")],
+                  [ InlineKeyboardButton( "ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ", callback_data = "" ),
+                    InlineKeyboardButton("sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ", callback_data = "")],
                 [
-                    InlineKeyboardButton("ᴍᴀɪɴ", callback_data = "about"),
-                    InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data = "about")
+                    InlineKeyboardButton("ᴍᴀɪɴ", callback_data = ""),
+                    InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data = "")
                 ]
             ]
         )
